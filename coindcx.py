@@ -36,13 +36,15 @@ def get_info(currencies_list):
     return info
 
 
+driver.get(link)
+driver.maximize_window()
+time.sleep(3)
+menubar = driver.find_element_by_css_selector('.base-pair__wrapper')
+button = menubar.find_elements_by_tag_name('button')[1]
+button.click()
+
 while True:
-    driver.get(link)
-    driver.maximize_window()
-    time.sleep(5)
-    menubar = driver.find_element_by_css_selector('.base-pair__wrapper')
-    button = menubar.find_elements_by_tag_name('button')[1]
-    button.click()
+    time.sleep(1)
     scraped_info = get_info(required_currencies)
     df = pd.DataFrame(scraped_info, columns=['Currency', 'Price', 'Difference'])
     print('CoinDCX:\n', df)
