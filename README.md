@@ -1,4 +1,3 @@
 # realTimeStockData
 Contains:
-Scrapers for several websites
-Django-Websocket 
+Scrapers for several websites, Django-Websocket 
