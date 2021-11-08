@@ -1,3 +1,5 @@
 # realTimeStockData
 Contains:
-Scrapers for several websites, Django-Websocket 
+Scrapers for Crypto Websites
+Scrapers for News Websites
+WebSocket files
