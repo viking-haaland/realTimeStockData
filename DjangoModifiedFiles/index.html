@@ -1,0 +1,57 @@
+{% extends 'base.html'%}
+{%block content%}
+
+<script>
+    let socket = new WebSocket("ws://localhost:8000/ws/tableData/")
+    socket.onopen = function(e){
+        console.log("Connection Established!")
+    };
+    socket.onmessage = function(e){
+        console.log(e['data'])
+        var recData = JSON.parse(e.data) // Data is received in recData, data from views.py is in 'data' variable used below.
+        // Data is in json format, convert into JS data structures(objects, arrays etc) accordingly.
+        for(let i in data[recData['CryptoName']]){ // If Cryptoname is BTC, then the for loop iterates through data[BTC], i.e BTC: USD, BTC: GPB, BTC: Euro...
+        // Check if the data from a certain website is in BTC: USD or not, eg: Check whether BTC:USD has an array of 'Kraken' website, if not then add it, if yes then replace it.
+        }
+    };
+    socket.onclose = function(e){
+        console.log("Connection Closed!")
+    };
+
+    let graphSocket = new WebSocket("ws://localhost:8000/ws/graphData/")
+    graphSocket.onopen = function(e){
+        console.log("Graph Connection Established!")
+    };
+    graphSocket.onmessage = function(e){
+        console.log(e['data'])
+        var recGraphData = JSON.parse(e.data) // graph strips data
+    };
+    socket.onclose = function(e){
+        console.log("Graph Connection Closed!")
+    };
+</script>
+
+<div class="container">
+    <div class="row table-responsive">
+        <table class="table table-bordered val-table">
+            <thead>
+                <th>#</th>
+                <th>PLatform</th>
+                <th>Last traded Price</th>
+                <th>Buy/Sell Price</th>
+                <th>Difference</th>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+        <script>
+            let data = {{tableData | safe}};
+            var currency="USD";
+            var btc="BTC";
+
+            generate_table();
+        </script>
+    </div>
+</div>
+{%endblock%}

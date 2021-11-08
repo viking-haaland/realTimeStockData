@@ -29,7 +29,7 @@ class StockData(AsyncWebsocketConsumer):
         )
 
    async def randomFunction(self, event):
-        # print (event['value'])
+        print (event['value'])
         await self.send(event['value'])
 
 
@@ -58,7 +58,6 @@ class GraphData(AsyncWebsocketConsumer):
         )
 
     async def randomFunction(self, event):
-        # print (event['value'])
         await self.send(event['value'])
 
 
@@ -85,5 +84,4 @@ class NewsData(AsyncWebsocketConsumer):
         )
 
     async def randomFunction(self, event):
-        # print (event['value'])
         await self.send(event['value'])
